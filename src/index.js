@@ -1,7 +1,3 @@
-import * as fs from 'node:fs';
-
-const parseFile = (path) => {
-  return JSON.parse(fs.readFileSync(path));
+export const parseData = (data) => {
+  return JSON.parse(data);
 };
-
-export { parseFile };
