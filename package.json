@@ -4,7 +4,7 @@
   "description": "[![Actions Status](https://github.com/tdd3vlp/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/tdd3vlp/frontend-project-46/actions)",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
   "main": "src/index.js",
   "bin": {
@@ -15,5 +15,16 @@
   "dependencies": {
     "commander": "^12.1.0",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^9.9.0",
+    "prettier": "3.3.3",
+    "globals": "^15.9.0",
+    "@eslint/js": "^9.9.0",
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1"
   }
 }

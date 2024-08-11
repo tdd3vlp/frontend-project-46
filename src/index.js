@@ -1,12 +1,11 @@
-import { readFileSync } from 'node:fs';
-import * as path from 'node:path';
-import parse from './parsers.js';
-import _ from 'lodash';
-import format from './formatters/formatter.js';
-import buildTree from './buildTree.js';
+import { readFileSync } from "node:fs";
+import * as path from "node:path";
+import parse from "./parsers.js";
+import format from "./formatters/formatter.js";
+import buildTree from "./buildTree.js";
 
 const getFileData = (file) => {
-  return readFileSync(path.resolve(file), 'utf-8');
+  return readFileSync(path.resolve(file), "utf-8");
 };
 
 const genDiff = (filePath1, filePath2) => {
