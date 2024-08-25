@@ -17,11 +17,19 @@ const result = `{
 }`;
 
 describe("Compare module", () => {
-  test("Compare two JSON files", () => {
+  test("Compare JSON files", () => {
     expect(
       gendiff(
         path.join(__dirname, "..", "__fixtures__", "file1.json"),
         path.join(__dirname, "..", "__fixtures__", "file2.json"),
+      ),
+    ).toEqual(result);
+  });
+  test("Compare YML files", () => {
+    expect(
+      gendiff(
+        path.join(__dirname, "..", "__fixtures__", "file1.yml"),
+        path.join(__dirname, "..", "__fixtures__", "file2.yml"),
       ),
     ).toEqual(result);
   });
