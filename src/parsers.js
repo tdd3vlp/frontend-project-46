@@ -1,3 +1,18 @@
-export default (data) => {
-  return JSON.parse(data);
+import yaml from "js-yaml";
+
+const parseJSON = (content) => JSON.parse(content);
+const parseYAML = (content) => yaml.load(content);
+
+const parse = (content, format) => {
+  switch (format) {
+    case "json":
+      return parseJSON(content);
+    case "yml":
+    case "yaml":
+      return parseYAML(content);
+    default:
+      throw new Error(`Unsupported format: ${format}`);
+  }
 };
+
+export default parse;

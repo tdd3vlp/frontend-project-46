@@ -17,7 +17,7 @@ const result = `{
 }`;
 
 describe("Compare module", () => {
-  test("Compare two flat files", () => {
+  test("Compare two JSON files", () => {
     expect(
       gendiff(
         path.join(__dirname, "..", "__fixtures__", "file1.json"),

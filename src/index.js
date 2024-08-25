@@ -8,10 +8,17 @@ const getFileData = (file) => {
   return readFileSync(path.resolve(file), "utf-8");
 };
 
+const getFileFormat = (filePath) => {
+  return path.extname(filePath).slice(1).toLowerCase();
+};
+
 const genDiff = (filePath1, filePath2) => {
-  const firstFile = parse(getFileData(filePath1));
-  const secondFile = parse(getFileData(filePath2));
-  const result = buildTree(firstFile, secondFile);
+  const format1 = getFileFormat(filePath1);
+  const format2 = getFileFormat(filePath2);
+
+  const firstFileData = parse(getFileData(filePath1), format1);
+  const secondFileData = parse(getFileData(filePath2), format2);
+  const result = buildTree(firstFileData, secondFileData);
   return format(result);
 };
 
