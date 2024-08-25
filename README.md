@@ -17,5 +17,8 @@ Instructions:
 
 EXAMPLES:
 
-'Compare two plain files (JSON)':
+'Compare JSON files':
 [![asciicast](https://asciinema.org/a/7J6hwxvJQi1iLO69NLrPQMpKA.svg)](https://asciinema.org/a/7J6hwxvJQi1iLO69NLrPQMpKA)
+
+'Compare YML files':
+[![asciicast](https://asciinema.org/a/SKQKWtlPjeNlq6nCNFDlwDaX3.svg)](https://asciinema.org/a/SKQKWtlPjeNlq6nCNFDlwDaX3)
