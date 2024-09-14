@@ -22,9 +22,8 @@ const jsonFormatter = (tree) => {
     }
   };
 
-  const formatItems = (items) => {
-    return items.reduce((acc, item) => ({ ...acc, ...formatItem(item) }), {});
-  };
+  const formatItems = (items) =>
+    items.reduce((acc, item) => ({ ...acc, ...formatItem(item) }), {});
 
   return JSON.stringify(formatItems(tree), null, 2);
 };

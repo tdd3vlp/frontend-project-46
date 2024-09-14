@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import genDiff from '../src/index.js';
 import { program } from 'commander';
+import genDiff from '../src/index.js';
 
 const fn = (filepath1, filepath2) => {
   console.log(genDiff(filepath1, filepath2, program.opts().format));

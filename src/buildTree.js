@@ -13,15 +13,12 @@ const buildTree = (obj1, obj2) => {
       return { key, value: buildTree(value1, value2), type: 'nested' };
     }
 
-    // Object1 does not have the key
     if (!_.has(obj1, key)) return { key, value: value2, type: 'added' };
-    // Object2 does not have the key
     if (!_.has(obj2, key)) return { key, value: value1, type: 'removed' };
-    // Object1 & Object2 both have the key and it is identical
-    if (_.isEqual(value1, value2))
+    if (_.isEqual(value1, value2)) {
       return { key, value: value1, type: 'unchanged' };
+    }
 
-    // Object1 & Object2 both have the key and it is different
     return { key, oldValue: value1, newValue: value2, type: 'changed' };
   });
 
