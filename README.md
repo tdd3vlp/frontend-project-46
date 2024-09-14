@@ -28,3 +28,6 @@ EXAMPLES:
 
 'Compare files with nested structure with plain formatter':
 [![asciicast](https://asciinema.org/a/82JtuJi7fjwhGmqWAMpwkljXG.svg)](https://asciinema.org/a/82JtuJi7fjwhGmqWAMpwkljXG)
+
+'Compare files with nested structure with json formatter':
+[![asciicast](https://asciinema.org/a/DlpbYyAXnEPWvYcJeFJ4ID9nU.svg)](https://asciinema.org/a/DlpbYyAXnEPWvYcJeFJ4ID9nU)
