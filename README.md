@@ -22,3 +22,6 @@ EXAMPLES:
 
 'Compare YML files':
 [![asciicast](https://asciinema.org/a/SKQKWtlPjeNlq6nCNFDlwDaX3.svg)](https://asciinema.org/a/SKQKWtlPjeNlq6nCNFDlwDaX3)
+
+'Compare files with nested structure':
+[![asciicast](https://asciinema.org/a/wai2fyfkKDYAB9ZOsK3w4wfbn.svg)](https://asciinema.org/a/wai2fyfkKDYAB9ZOsK3w4wfbn)
