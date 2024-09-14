@@ -65,7 +65,7 @@ Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
 describe('Compare module', () => {
-  test('Compare JSON files', () => {
+  test('Compare JSON files with stylish formatter', () => {
     expect(
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.json'),
@@ -73,7 +73,7 @@ describe('Compare module', () => {
       )
     ).toEqual(stylishFormat);
   });
-  test('Compare YML files', () => {
+  test('Compare YML files with stylish formatter', () => {
     expect(
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
@@ -81,7 +81,8 @@ describe('Compare module', () => {
       )
     ).toEqual(stylishFormat);
   });
-  test('Plain format with JSON', () => {
+
+  test('Compare JSON files with plain formatter', () => {
     expect(
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.json'),
@@ -90,7 +91,7 @@ describe('Compare module', () => {
       )
     ).toBe(plainFormat);
   });
-  test('Plain format with YML', () => {
+  test('Compare YML files with plain formatter', () => {
     expect(
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
