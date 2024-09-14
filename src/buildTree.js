@@ -19,7 +19,12 @@ const buildTree = (obj1, obj2) => {
       return { key, value: value1, type: 'unchanged' };
     }
 
-    return { key, oldValue: value1, newValue: value2, type: 'changed' };
+    return {
+      key,
+      oldValue: value1,
+      newValue: value2,
+      type: 'changed',
+    };
   });
 
   return result;

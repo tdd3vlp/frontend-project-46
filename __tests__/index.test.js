@@ -156,16 +156,16 @@ describe('Compare module', () => {
     expect(
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.json'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.json')
-      )
+        path.join(__dirname, '..', '__fixtures__', 'file2.json'),
+      ),
     ).toEqual(stylishFormat);
   });
   test('Compare YML files with stylish formatter', () => {
     expect(
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.yml')
-      )
+        path.join(__dirname, '..', '__fixtures__', 'file2.yml'),
+      ),
     ).toEqual(stylishFormat);
   });
   test('Compare JSON files with plain formatter', () => {
@@ -173,8 +173,8 @@ describe('Compare module', () => {
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.json'),
         path.join(__dirname, '..', '__fixtures__', 'file2.json'),
-        'plain'
-      )
+        'plain',
+      ),
     ).toBe(plainFormat);
   });
   test('Compare YML files with plain formatter', () => {
@@ -182,8 +182,8 @@ describe('Compare module', () => {
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
         path.join(__dirname, '..', '__fixtures__', 'file2.yml'),
-        'plain'
-      )
+        'plain',
+      ),
     ).toBe(plainFormat);
   });
   test('Compare JSON files with json formatter', () => {
@@ -191,8 +191,8 @@ describe('Compare module', () => {
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.json'),
         path.join(__dirname, '..', '__fixtures__', 'file2.json'),
-        'json'
-      )
+        'json',
+      ),
     ).toBe(jsonFormat);
   });
   test('Compare YML files with json formatter', () => {
@@ -200,8 +200,8 @@ describe('Compare module', () => {
       genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
         path.join(__dirname, '..', '__fixtures__', 'file2.yml'),
-        'json'
-      )
+        'json',
+      ),
     ).toBe(jsonFormat);
   });
 });
