@@ -1,4 +1,4 @@
-const jsonFormatter = (diffTree) => {
+const jsonFormatter = (tree) => {
   const formatItem = (item) => {
     switch (item.type) {
       case 'nested':
@@ -23,12 +23,10 @@ const jsonFormatter = (diffTree) => {
   };
 
   const formatItems = (items) => {
-    return items.reduce((acc, item) => {
-      return { ...acc, ...formatItem(item) };
-    }, {});
+    return items.reduce((acc, item) => ({ ...acc, ...formatItem(item) }), {});
   };
 
-  return JSON.stringify(formatItems(diffTree), null, 2);
+  return JSON.stringify(formatItems(tree), null, 2);
 };
 
 export default jsonFormatter;
