@@ -3,8 +3,8 @@
 import genDiff from '../src/index.js';
 import { program } from 'commander';
 
-const fn = (filepath1, filepath2) => {
-  console.log(genDiff(filepath1, filepath2));
+const fn = (filepath1, filepath2, formatName = 'stylish') => {
+  console.log(genDiff(filepath1, filepath2, program.opts().format));
 };
 
 program

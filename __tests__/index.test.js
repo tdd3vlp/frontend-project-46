@@ -1,13 +1,13 @@
 import { dirname } from 'path';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
-import gendiff from '../src/index.js';
+import genDiff from '../src/index.js';
 import { describe, expect, test } from '@jest/globals';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const result = `{
+const stylishFormat = `{
     common: {
       + follow: false
         setting1: Value 1
@@ -52,8 +52,7 @@ const result = `{
     }
 }`;
 
-const result2 = `
-Property 'common.follow' was added with value: false
+const plainFormat = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
 Property 'common.setting3' was updated. From true to null
 Property 'common.setting4' was added with value: 'blah blah'
@@ -63,40 +62,41 @@ Property 'common.setting6.ops' was added with value: 'vops'
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
-Property 'group3' was added with value: [complex value]
-`;
+Property 'group3' was added with value: [complex value]`;
 
 describe('Compare module', () => {
   test('Compare JSON files', () => {
     expect(
-      gendiff(
+      genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.json'),
         path.join(__dirname, '..', '__fixtures__', 'file2.json')
       )
-    ).toEqual(result);
+    ).toEqual(stylishFormat);
   });
   test('Compare YML files', () => {
     expect(
-      gendiff(
+      genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
         path.join(__dirname, '..', '__fixtures__', 'file2.yml')
       )
-    ).toEqual(result);
+    ).toEqual(stylishFormat);
   });
   test('Plain format with JSON', () => {
     expect(
-      gendiff(
+      genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.json'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.json')
+        path.join(__dirname, '..', '__fixtures__', 'file2.json'),
+        'plain'
       )
-    ).toEqual(result2);
+    ).toBe(plainFormat);
   });
   test('Plain format with YML', () => {
     expect(
-      gendiff(
+      genDiff(
         path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.yml')
+        path.join(__dirname, '..', '__fixtures__', 'file2.yml'),
+        'plain'
       )
-    ).toEqual(result2);
+    ).toBe(plainFormat);
   });
 });
