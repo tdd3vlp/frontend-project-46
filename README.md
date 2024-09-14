@@ -17,11 +17,14 @@ Instructions:
 
 EXAMPLES:
 
-'Compare JSON files':
+'Compare plain JSON files':
 [![asciicast](https://asciinema.org/a/7J6hwxvJQi1iLO69NLrPQMpKA.svg)](https://asciinema.org/a/7J6hwxvJQi1iLO69NLrPQMpKA)
 
-'Compare YML files':
+'Compare plain YML files':
 [![asciicast](https://asciinema.org/a/SKQKWtlPjeNlq6nCNFDlwDaX3.svg)](https://asciinema.org/a/SKQKWtlPjeNlq6nCNFDlwDaX3)
 
-'Compare files with nested structure':
+'Compare files with nested structure with stylish formatter':
 [![asciicast](https://asciinema.org/a/wai2fyfkKDYAB9ZOsK3w4wfbn.svg)](https://asciinema.org/a/wai2fyfkKDYAB9ZOsK3w4wfbn)
+
+'Compare files with nested structure with plain formatter':
+[![asciicast](https://asciinema.org/a/82JtuJi7fjwhGmqWAMpwkljXG.svg)](https://asciinema.org/a/82JtuJi7fjwhGmqWAMpwkljXG)
