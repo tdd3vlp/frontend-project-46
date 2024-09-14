@@ -1,8 +1,8 @@
-import { readFileSync } from "node:fs";
-import * as path from "node:path";
-import parse from "./parsers.js";
-import format from "./formatters/formatter.js";
-import buildTree from "./buildTree.js";
+import { readFileSync } from 'node:fs';
+import * as path from 'node:path';
+import parse from './parsers.js';
+import format from './formatters/format.js';
+import buildTree from './buildTree.js';
 
 // Get data and parse
 const getParsedFileData = (filePath) => {
@@ -13,7 +13,7 @@ const getParsedFileData = (filePath) => {
 
 // Read file
 const getFileData = (filePath) => {
-  return readFileSync(path.resolve(filePath), "utf-8");
+  return readFileSync(path.resolve(filePath), 'utf-8');
 };
 
 // Get file format

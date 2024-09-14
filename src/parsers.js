@@ -1,4 +1,4 @@
-import yaml from "js-yaml";
+import yaml from 'js-yaml';
 
 const mapping = {
   json: JSON.parse,
