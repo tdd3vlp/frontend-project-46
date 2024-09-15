@@ -2,18 +2,15 @@ import _ from 'lodash';
 
 const formatValue = (value) => {
   if (_.isPlainObject(value)) {
-    // Если значение — это объект, обрабатываем его рекурсивно
     return _.mapValues(value, formatValue);
   }
   return value;
 };
 
 const jsonFormatter = (tree) => {
-  const formatItems = (items) =>
-    items.reduce((acc, item) => {
+  const formatItems = (items) => items.reduce((acc, item) => {
       switch (item.type) {
         case 'nested':
-          // Если это вложенный элемент, рекурсивно обрабатываем его
           return { ...acc, [item.key]: formatItems(item.value) };
         case 'added':
           return { ...acc, [item.key]: { type: 'added', value: formatValue(item.value) } };
