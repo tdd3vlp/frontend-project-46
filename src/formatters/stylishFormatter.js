@@ -17,7 +17,7 @@ const stylishFormatter = (tree, depth = 1) => {
   const formattedResult = tree
     .map((item) => {
       const currentIndent = `${indent}  `;
-      const nestedIndent = `${indent}    '`;
+      const nestedIndent = `${indent}    `;
 
       switch (item.type) {
         case 'added':
