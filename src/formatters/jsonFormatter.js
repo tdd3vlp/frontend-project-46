@@ -9,8 +9,8 @@ const formatValue = (value) => {
 };
 
 const jsonFormatter = (tree) => {
-  const formatItems = (items) => {
-    return items.reduce((acc, item) => {
+  const formatItems = (items) =>
+    items.reduce((acc, item) => {
       switch (item.type) {
         case 'nested':
           // Если это вложенный элемент, рекурсивно обрабатываем его
@@ -34,7 +34,6 @@ const jsonFormatter = (tree) => {
           throw new Error(`Unknown item type: ${item.type}`);
       }
     }, {});
-  };
 
   return JSON.stringify(formatItems(tree), null, 2);
 };
