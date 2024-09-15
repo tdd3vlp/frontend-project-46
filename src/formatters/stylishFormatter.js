@@ -3,13 +3,13 @@ import _ from 'lodash';
 const stylishFormatter = (tree, depth = 1) => {
   const indent = '    '.repeat(depth - 1);
 
-  const formatValue = (value, depth) => {
+  const formatValue = (value, currentDepth) => {
     if (_.isPlainObject(value)) {
-      const indent = '    '.repeat(depth);
+      const indentation = '    '.repeat(currentDepth);
       const entries = Object.entries(value)
-        .map(([key, val]) => `${indent}${key}: ${formatValue(val, depth + 1)}`)
+        .map(([key, val]) => `${indentation}${key}: ${formatValue(val, currentDepth + 1)}`)
         .join('\n');
-      return `{\n${entries}\n${'    '.repeat(depth - 1)}}`;
+      return `{\n${entries}\n${'    '.repeat(currentDepth - 1)}}`;
     }
     return value;
   };

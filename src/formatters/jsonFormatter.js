@@ -1,5 +1,9 @@
 const jsonFormatter = (tree) => {
-  const formatItems = (items) => items.reduce((acc, item) => ({ ...acc, ...formatItem(item) }), {});
+  const formatItems = (items) =>
+    items.reduce((acc, item) => {
+      const formattedItem = formatItem(item);
+      return { ...acc, ...formattedItem };
+    }, {});
 
   const formatItem = (item) => {
     switch (item.type) {
