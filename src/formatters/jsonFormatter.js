@@ -1,31 +1,39 @@
-const jsonFormatter = (tree) => {
-  const formatItems = (items) =>
-    items.reduce((acc, item) => {
-      const formattedItem = formatItem(item);
-      return { ...acc, ...formattedItem };
-    }, {});
+import _ from 'lodash';
 
-  const formatItem = (item) => {
-    switch (item.type) {
-      case 'nested':
-        return { [item.key]: formatItems(item.value) };
-      case 'added':
-        return { [item.key]: { type: 'added', value: item.value } };
-      case 'removed':
-        return { [item.key]: { type: 'removed', value: item.value } };
-      case 'unchanged':
-        return { [item.key]: { type: 'unchanged', value: item.value } };
-      case 'changed':
-        return {
-          [item.key]: {
-            type: 'changed',
-            oldValue: item.oldValue,
-            newValue: item.newValue,
-          },
-        };
-      default:
-        throw new Error(`Unknown item type: ${item.type}`);
-    }
+const formatValue = (value) => {
+  if (_.isPlainObject(value)) {
+    // Если значение — это объект, обрабатываем его рекурсивно
+    return _.mapValues(value, formatValue);
+  }
+  return value;
+};
+
+const jsonFormatter = (tree) => {
+  const formatItems = (items) => {
+    return items.reduce((acc, item) => {
+      switch (item.type) {
+        case 'nested':
+          // Если это вложенный элемент, рекурсивно обрабатываем его
+          return { ...acc, [item.key]: formatItems(item.value) };
+        case 'added':
+          return { ...acc, [item.key]: { type: 'added', value: formatValue(item.value) } };
+        case 'removed':
+          return { ...acc, [item.key]: { type: 'removed', value: formatValue(item.value) } };
+        case 'unchanged':
+          return { ...acc, [item.key]: { type: 'unchanged', value: formatValue(item.value) } };
+        case 'changed':
+          return {
+            ...acc,
+            [item.key]: {
+              type: 'changed',
+              oldValue: formatValue(item.oldValue),
+              newValue: formatValue(item.newValue),
+            },
+          };
+        default:
+          throw new Error(`Unknown item type: ${item.type}`);
+      }
+    }, {});
   };
 
   return JSON.stringify(formatItems(tree), null, 2);
