@@ -4,21 +4,17 @@ import parse from './parsers.js';
 import format from './formatters/index.js';
 import buildTree from './buildTree.js';
 
-// Get data and parse
-const getParsedFileData = (filePath) => {
-  const format = getFileFormat(filePath);
-  const data = getFileData(filePath);
-  return parse(data, format);
-};
-
 // Read file
-const getFileData = (filePath) => {
-  return readFileSync(path.resolve(filePath), 'utf-8');
-};
+const getFileData = (filePath) => readFileSync(path.resolve(filePath), 'utf-8');
 
 // Get file format
-const getFileFormat = (filePath) => {
-  return path.extname(filePath).slice(1).toLowerCase();
+const getFileFormat = (filePath) => path.extname(filePath).slice(1).toLowerCase();
+
+// Get data and parse
+const getParsedFileData = (filePath) => {
+  const fileFormat = getFileFormat(filePath);
+  const fileData = getFileData(filePath);
+  return parse(fileData, fileFormat);
 };
 
 // Main function

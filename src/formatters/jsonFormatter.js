@@ -1,4 +1,6 @@
 const jsonFormatter = (tree) => {
+  const formatItems = (items) => items.reduce((acc, item) => ({ ...acc, ...formatItem(item) }), {});
+
   const formatItem = (item) => {
     switch (item.type) {
       case 'nested':
@@ -21,8 +23,6 @@ const jsonFormatter = (tree) => {
         throw new Error(`Unknown item type: ${item.type}`);
     }
   };
-
-  const formatItems = (items) => items.reduce((acc, item) => ({ ...acc, ...formatItem(item) }), {});
 
   return JSON.stringify(formatItems(tree), null, 2);
 };

@@ -3,10 +3,21 @@ import _ from 'lodash';
 const stylishFormatter = (tree, depth = 1) => {
   const indent = '    '.repeat(depth - 1);
 
+  const formatValue = (value, depth) => {
+    if (_.isPlainObject(value)) {
+      const indent = '    '.repeat(depth);
+      const entries = Object.entries(value)
+        .map(([key, val]) => `${indent}${key}: ${formatValue(val, depth + 1)}`)
+        .join('\n');
+      return `{\n${entries}\n${'    '.repeat(depth - 1)}}`;
+    }
+    return value;
+  };
+
   const formattedResult = tree
     .map((item) => {
-      const currentIndent = indent + '  ';
-      const nestedIndent = indent + '    ';
+      const currentIndent = `${indent}  `;
+      const nestedIndent = `${indent}    '`;
 
       switch (item.type) {
         case 'added':
@@ -26,17 +37,6 @@ const stylishFormatter = (tree, depth = 1) => {
     .join('\n');
 
   return `{\n${formattedResult}\n${indent}}`;
-};
-
-const formatValue = (value, depth) => {
-  if (_.isPlainObject(value)) {
-    const indent = '    '.repeat(depth);
-    const entries = Object.entries(value)
-      .map(([key, val]) => `${indent}${key}: ${formatValue(val, depth + 1)}`)
-      .join('\n');
-    return `{\n${entries}\n${'    '.repeat(depth - 1)}}`;
-  }
-  return value;
 };
 
 export default stylishFormatter;
