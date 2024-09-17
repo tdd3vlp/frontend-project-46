@@ -12,13 +12,9 @@ jobs:
         run: make test
       - name: Lint
         run: make lint
-  coverage:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
       - name: Code coverage
         uses: paambaati/codeclimate-action@v9.0.0
         env:
-          CC_TEST_REPORTER_ID: a288ee7cc50b292f248c5f6afb5270985c1a103d72609c4028240588863885ae
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: make test
+          coverageCommand: make test-coverage
