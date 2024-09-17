@@ -10,9 +10,7 @@ import plainFormat from '../__fixtures__/plainFormat.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const getFullPath = (file) => {
-  return path.join(__dirname, '..', '__fixtures__', file);
-};
+const getFullPath = (file) => path.join(__dirname, '..', '__fixtures__', file);
 
 describe('Compare module', () => {
   test('Compare JSON files with stylish formatter', () => {
