@@ -31,7 +31,7 @@ const stylishFormatter = (tree, depth = 1) => {
         case 'nested':
           return `${nestedIndent}${item.key}: ${stylishFormatter(item.value, depth + 1)}`;
         default:
-          return '';
+          throw new Error(`Unknown item type: '${item.type}'`);
       }
     })
     .join('\n');

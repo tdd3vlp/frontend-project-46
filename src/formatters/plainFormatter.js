@@ -23,7 +23,7 @@ const plainFormatter = (tree, parentPath = '') => {
       case 'unchanged':
         return [];
       default:
-        throw new Error(`Unknown child type: '${item.type}'`);
+        throw new Error(`Unknown item type: '${item.type}'`);
     }
   });
   return formattedResult.join('\n');

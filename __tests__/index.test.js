@@ -3,205 +3,36 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 import { describe, expect, test } from '@jest/globals';
 import genDiff from '../src/index.js';
+import jsonFormat from '../__fixtures__/jsonFormat.js';
+import stylishFormat from '../__fixtures__/stylishFormat.js';
+import plainFormat from '../__fixtures__/plainFormat.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const stylishFormat = `{
-    common: {
-      + follow: false
-        setting1: Value 1
-      - setting2: 200
-      - setting3: true
-      + setting3: null
-      + setting4: blah blah
-      + setting5: {
-            key5: value5
-        }
-        setting6: {
-            doge: {
-              - wow: 
-              + wow: so much
-            }
-            key: value
-          + ops: vops
-        }
-    }
-    group1: {
-      - baz: bas
-      + baz: bars
-        foo: bar
-      - nest: {
-            key: value
-        }
-      + nest: str
-    }
-  - group2: {
-        abc: 12345
-        deep: {
-            id: 45
-        }
-    }
-  + group3: {
-        deep: {
-            id: {
-                number: 45
-            }
-        }
-        fee: 100500
-    }
-}`;
-
-const plainFormat = `Property 'common.follow' was added with value: false
-Property 'common.setting2' was removed
-Property 'common.setting3' was updated. From true to null
-Property 'common.setting4' was added with value: 'blah blah'
-Property 'common.setting5' was added with value: [complex value]
-Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
-Property 'common.setting6.ops' was added with value: 'vops'
-Property 'group1.baz' was updated. From 'bas' to 'bars'
-Property 'group1.nest' was updated. From [complex value] to 'str'
-Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`;
-
-const jsonFormat = `{
-  "common": {
-    "follow": {
-      "type": "added",
-      "value": false
-    },
-    "setting1": {
-      "type": "unchanged",
-      "value": "Value 1"
-    },
-    "setting2": {
-      "type": "removed",
-      "value": 200
-    },
-    "setting3": {
-      "type": "changed",
-      "oldValue": true,
-      "newValue": null
-    },
-    "setting4": {
-      "type": "added",
-      "value": "blah blah"
-    },
-    "setting5": {
-      "type": "added",
-      "value": {
-        "key5": "value5"
-      }
-    },
-    "setting6": {
-      "doge": {
-        "wow": {
-          "type": "changed",
-          "oldValue": "",
-          "newValue": "so much"
-        }
-      },
-      "key": {
-        "type": "unchanged",
-        "value": "value"
-      },
-      "ops": {
-        "type": "added",
-        "value": "vops"
-      }
-    }
-  },
-  "group1": {
-    "baz": {
-      "type": "changed",
-      "oldValue": "bas",
-      "newValue": "bars"
-    },
-    "foo": {
-      "type": "unchanged",
-      "value": "bar"
-    },
-    "nest": {
-      "type": "changed",
-      "oldValue": {
-        "key": "value"
-      },
-      "newValue": "str"
-    }
-  },
-  "group2": {
-    "type": "removed",
-    "value": {
-      "abc": 12345,
-      "deep": {
-        "id": 45
-      }
-    }
-  },
-  "group3": {
-    "type": "added",
-    "value": {
-      "deep": {
-        "id": {
-          "number": 45
-        }
-      },
-      "fee": 100500
-    }
-  }
-}`;
+const getFullPath = (file) => {
+  return path.join(__dirname, '..', '__fixtures__', file);
+};
 
 describe('Compare module', () => {
   test('Compare JSON files with stylish formatter', () => {
-    expect(
-      genDiff(
-        path.join(__dirname, '..', '__fixtures__', 'file1.json'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.json'),
-      ),
-    ).toEqual(stylishFormat);
+    expect(genDiff(getFullPath('file1.json'), getFullPath('file2.json'))).toEqual(stylishFormat);
   });
   test('Compare YML files with stylish formatter', () => {
-    expect(
-      genDiff(
-        path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.yml'),
-      ),
-    ).toEqual(stylishFormat);
+    expect(genDiff(getFullPath('file1.yml'), getFullPath('file2.yml'))).toEqual(stylishFormat);
   });
   test('Compare JSON files with plain formatter', () => {
-    expect(
-      genDiff(
-        path.join(__dirname, '..', '__fixtures__', 'file1.json'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.json'),
-        'plain',
-      ),
-    ).toBe(plainFormat);
+    expect(genDiff(getFullPath('file1.json'), getFullPath('file2.json'), 'plain')).toBe(
+      plainFormat,
+    );
   });
   test('Compare YML files with plain formatter', () => {
-    expect(
-      genDiff(
-        path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.yml'),
-        'plain',
-      ),
-    ).toBe(plainFormat);
+    expect(genDiff(getFullPath('file1.yml'), getFullPath('file2.yml'), 'plain')).toBe(plainFormat);
   });
   test('Compare JSON files with json formatter', () => {
-    expect(
-      genDiff(
-        path.join(__dirname, '..', '__fixtures__', 'file1.json'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.json'),
-        'json',
-      ),
-    ).toBe(jsonFormat);
+    expect(genDiff(getFullPath('file1.json'), getFullPath('file2.json'), 'json')).toBe(jsonFormat);
   });
   test('Compare YML files with json formatter', () => {
-    expect(
-      genDiff(
-        path.join(__dirname, '..', '__fixtures__', 'file1.yml'),
-        path.join(__dirname, '..', '__fixtures__', 'file2.yml'),
-        'json',
-      ),
-    ).toBe(jsonFormat);
+    expect(genDiff(getFullPath('file1.yml'), getFullPath('file2.yml'), 'json')).toBe(jsonFormat);
   });
 });
